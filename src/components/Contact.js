@@ -10,11 +10,11 @@ export default class Contact extends Component {
     render() {
       const {name,email,phone} = this.props;
     return (
-      <div className="card">
+      <div className="card mb-3">
         <h5 className="card-header">{name} Contact Info</h5>
         <div className="card-body">
             <h6 className="card-subtitle">Email : {email}</h6>
-            <h6 className="card-subtitle">Phone : {phone}</h6>
+            <p className="card-text">Phone : {phone}</p>
         </div>
       </div>
     )
