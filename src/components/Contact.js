@@ -1,32 +1,38 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 
-export default class Contact extends Component {
-   static defaultProps ={
-        "name":"Vikas Gupta",
-        email:"vikashg483@gmail.com",
-        phone:"555-555-5555"
-    }
+class Contact extends Component {
+
+  state ={
+    showBodyView:false
+  }
+  toggleBody = e =>{
+    this.setState({showBodyView : !this.state.showBodyView})
+  }
     render() {
-      const {name,email,phone} = this.props;
-    return (
-      <div className="card mb-3">
-        <h5 className="card-header">{name} Contact Info</h5>
-        <div className="card-body">
-            <h6 className="card-subtitle">Email : {email}</h6>
-            <p className="card-text">Phone : {phone}</p>
+      const {id,name,email,phone} = this.props;
+      const {showBodyView} = this.state;
+      return (
+        <div className="card mb-3">
+          <h5 className="card-header">{name} Contact Info
+           {showBodyView ? 
+             (<i className="fa fa-sort-up ml-1" onClick={this.toggleBody}></i>)
+            :(<i className="fa fa-sort-down ml-1" onClick={this.toggleBody}></i>)
+           } 
+          </h5>
+          {showBodyView ? (
+              <div className="card-body" id={id}>
+                <h6 className="card-subtitle">Email : {email}</h6>
+                <p className="card-text">Phone : {phone}</p>
+            </div>
+          ) : null}
+          
         </div>
-      </div>
-    )
+      )
   }
 }
-
+export default Contact
 // Contact.defaultProps ={
 //     "name":"Vikas Gupta",
 //     email:"vikashg483@gmail.com",
 //     phone:"555-555-5555"
 // }
-Contact.propTypes={
-    name:PropTypes.string.isRequired,
-    email:PropTypes.string.isRequired,
-}

@@ -27,15 +27,15 @@ import Contact from './Contact';
   render() {
       const {contacts} = this.state;
     return (
-      <div>
+      <React.Fragment>
           {
               contacts.map(elm => 
                 (
-                    <Contact name={elm.name} email={elm.email} phone={elm.phone} />
+                    <Contact key={elm.id} name={elm.name} email={elm.email} phone={elm.phone} />
                 )
               )
           }
-      </div>
+      </React.Fragment>
     )
   }
 }
