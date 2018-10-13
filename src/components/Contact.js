@@ -8,6 +8,9 @@ class Contact extends Component {
   toggleBody = e =>{
     this.setState({showBodyView : !this.state.showBodyView})
   }
+  onDeleteEventHandler = () => {
+    this.props.deleteContact();
+  }
     render() {
       const {id,name,email,phone} = this.props;
       const {showBodyView} = this.state;
@@ -18,6 +21,7 @@ class Contact extends Component {
              (<i className="fa fa-sort-up ml-1" onClick={this.toggleBody}></i>)
             :(<i className="fa fa-sort-down ml-1" onClick={this.toggleBody}></i>)
            } 
+           <i className="fa fa-times text-danger float-right" onClick={this.onDeleteEventHandler}></i>
           </h5>
           {showBodyView ? (
               <div className="card-body" id={id}>

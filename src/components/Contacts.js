@@ -24,14 +24,22 @@ import Contact from './Contact';
              }
          ]
      }
-  render() {
+     deleteContact=(id,e)=>{
+        console.log("Delete Clicked",id);
+        const {contacts} = this.state;
+        const filteredContacts = contacts.filter(elm=> elm.id !== id) ;
+        this.setState({
+            contacts:filteredContacts
+        }) 
+     }
+    render() {
       const {contacts} = this.state;
     return (
       <React.Fragment>
           {
               contacts.map(elm => 
                 (
-                    <Contact key={elm.id} name={elm.name} email={elm.email} phone={elm.phone} />
+                    <Contact key={elm.id} name={elm.name} email={elm.email} phone={elm.phone} deleteContact={this.deleteContact.bind(this,elm.id)} />
                 )
               )
           }
