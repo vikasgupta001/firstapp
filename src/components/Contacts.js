@@ -1,29 +1,8 @@
 import React, { Component } from 'react'
 import Contact from './Contact';
-
+import {Consumer} from '../context'
  class Contacts extends Component {
-     state={
-         contacts:[
-             {
-                 id:178,
-                name:"Vikas Gupta",
-                email:"vikas@mail.com",
-                phone:"222-222-2222"
-             },
-             {
-                 id:179,
-                 name:"Vikram Singh",
-                 email:"vikram@mail.com",
-                 phone:"333-333-3333"
-             },
-             {
-                 id:180,
-                 name:"Vinay Champ",
-                 email:"vinay@mail.com",
-                 phone:"444-444-4444"
-             }
-         ]
-     }
+     
      deleteContact=(id,e)=>{
         console.log("Delete Clicked",id);
         const {contacts} = this.state;
@@ -33,17 +12,23 @@ import Contact from './Contact';
         }) 
      }
     render() {
-      const {contacts} = this.state;
     return (
-      <React.Fragment>
-          {
-              contacts.map(elm => 
-                (
-                    <Contact key={elm.id} name={elm.name} email={elm.email} phone={elm.phone} deleteContact={this.deleteContact.bind(this,elm.id)} />
+        <Consumer>
+            {value =>{
+                const {contacts} = value;
+                return(
+                    <React.Fragment>
+                            {
+                                contacts.map(elm => 
+                                    (
+                                        <Contact key={elm.id} name={elm.name} email={elm.email} phone={elm.phone} deleteContact={this.deleteContact.bind(this,elm.id)} />
+                                    )
+                                )
+                            }
+                        </React.Fragment>
                 )
-              )
-          }
-      </React.Fragment>
+            }}
+        </Consumer>
     )
   }
 }
